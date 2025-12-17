@@ -28,7 +28,7 @@ jobs:
         run: |
           pwd ; ls -ltras staticwebsite
           # Sync files from staticwebsite directory to S3 bucket
-          aws s3 sync ../../staticwebsite/ s3://epam-staticwebsite-bucket/ --delete
+          aws s3 sync staticwebsite/ s3://epam-staticwebsite-bucket/ --delete
           
           # Set proper content types for common file types
           aws s3 cp s3://epam-staticwebsite-bucket/ s3://epam-staticwebsite-bucket/ \
@@ -61,7 +61,6 @@ jobs:
 
       - name: Deployment complete
         run: |
-          pwd
           echo "✅ Deployment to S3 completed successfully!"
           echo "Website URL: http://epam-staticwebsite-bucket.s3-website-$(aws configure get region).amazonaws.com"
 
