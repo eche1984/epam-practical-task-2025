@@ -15,4 +15,4 @@ The content of this repo was intended to fulfill the optional practical asignmen
 
 2) To complete this second task, I created this repo (epam-practical-task-2025).
 
-3) 
+3) Finally, to complete the third task, I created the deploy.yml file with a GitHub Action to upload the HTML files on every push

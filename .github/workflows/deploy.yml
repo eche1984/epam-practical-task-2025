@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - master
+    paths:
+      - '**.html'
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -25,8 +27,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy to S3
-        run: |
-          pwd ; ls -ltras staticwebsite
+        run: |          
           # Sync files from staticwebsite directory to S3 bucket
           aws s3 sync staticwebsite/ s3://epam-staticwebsite-bucket/ --delete
           
@@ -62,5 +63,5 @@ jobs:
       - name: Deployment complete
         run: |
           echo "✅ Deployment to S3 completed successfully!"
-          echo "Website URL: http://epam-staticwebsite-bucket.s3-website-$(aws configure get region).amazonaws.com"
+          echo "Website URL: http://epam-staticwebsite-bucket.s3-website-us-east-1.amazonaws.com"
 
