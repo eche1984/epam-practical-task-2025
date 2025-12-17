@@ -15,6 +15,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Print working directory
+        run: pwd
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -26,6 +29,7 @@ jobs:
 
       - name: Deploy to S3
         run: |
+          pwd
           # Sync files from staticwebsite directory to S3 bucket
           aws s3 sync ../../staticwebsite/ s3://epam-staticwebsite-bucket/ --delete
           
@@ -60,6 +64,7 @@ jobs:
 
       - name: Deployment complete
         run: |
+          pwd
           echo "✅ Deployment to S3 completed successfully!"
           echo "Website URL: http://epam-staticwebsite-bucket.s3-website-$(aws configure get region).amazonaws.com"
 
